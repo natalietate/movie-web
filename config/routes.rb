@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :users
   resources :movies
-
+  resources :groups, only: [:new, :create, :show]
+  resources :group_watchlists, only: [:create, :destroy]
+  
 end
