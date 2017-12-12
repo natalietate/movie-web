@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212212435) do
+ActiveRecord::Schema.define(version: 20171212212646) do
 
   create_table "groups", force: :cascade do |t|
     t.string "title"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20171212212435) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_watchlists", force: :cascade do |t|
+    t.integer "movie_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_user_watchlists_on_movie_id"
+    t.index ["user_id"], name: "index_user_watchlists_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
