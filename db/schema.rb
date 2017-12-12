@@ -10,20 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212211913) do
+ActiveRecord::Schema.define(version: 20171212212435) do
+
+  create_table "groups", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-  end
-
-  create_table "movies_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "movie_id", null: false
-    t.index ["movie_id", "user_id"], name: "index_movies_users_on_movie_id_and_user_id"
-    t.index ["user_id", "movie_id"], name: "index_movies_users_on_user_id_and_movie_id"
   end
 
   create_table "users", force: :cascade do |t|
