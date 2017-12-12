@@ -1,0 +1,18 @@
+<h1>Add a Title to Your Collection</h1>
+  <%= form_with model: @movie, local: true do |f|  %>
+    <% if @movie.errors.any? %>
+      <div id="explain_error">
+        <h2> Uh oh! <%= pluralize(@movie.errors.count, "error") %> prohibited this boat from being saved: </h2>
+        <ul>
+          <% @movie.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
+    <%= f.label "Movie title:" %>
+    <%= f.text_field :title %>
+<br>
+  <%= f.submit%>
+  <% end %>
