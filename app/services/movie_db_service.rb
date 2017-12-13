@@ -6,4 +6,9 @@ class MovieDbService
   def popular
      Tmdb::Movie.popular
    end
+
+   def playing
+     Tmdb::Movie.now_playing
+   end
+
  end

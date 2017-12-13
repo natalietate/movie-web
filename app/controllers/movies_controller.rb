@@ -3,6 +3,7 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     movieDb = MovieDbService.new()
     @popular = movieDb.popular
+    @playing = movieDb.playing
   end
 
   def show
