@@ -5,21 +5,25 @@ class MoviesController < ApplicationController
     @movies = movie_provider.popular
 
   end
+
   def search
     @movies = movie_provider.find(params[:q])
     render 'movies/index'
+    @movie = Movie.new(movie_params)
   end
 
   def new
-    @movie = Movie.new
+    @movie = Movie.new(movie_params)
   end
 
   def create
     @movie = Movie.new(movie_params)
-      if @movie.save
+    @watchlist = @movie.user_watchlists.build(params[:id])
+    @watchlist.user_id = current_user.id
+      if @watchlist.save
         redirect_to root_path
       else
-        render 'new'
+        render 'movies/index'
       end
   end
 
