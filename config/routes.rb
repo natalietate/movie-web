@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :users
   resources :movies do
-    member do
+    collection do
       get 'search'
+      post 'search', to: 'movies#create'
     end
   end
+
   resources :groups, only: [:new, :create, :show]
   resources :group_watchlists, only: [:create, :destroy]
 
