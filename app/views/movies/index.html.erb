@@ -1,20 +1,21 @@
 <h1>Search for a movie:</h1>
 <div class="form">
-  <%= form_tag('/movies/0/search', method: 'get') do %>
+  <%= form_tag('/movies/search', method: 'get') do %>
   <%= text_field_tag(:q) %>
   <%= submit_tag 'Search', type: :submit %>
   <% end %>
 </div>
 
-<% @movies[0..2].each do |mov| %>
+<%= 'Sorry, movie cannot be found.' if @movies.empty? %>
+<% @movies.each do |mov| %>
   <ul>
     <li><%= mov.original_title %> <br>
     <img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>"/> <br>
     <div class="form">
-    <%= form_with model: @movie, local: true do |f| %>
+    <%= form_with model: @movie, local: true, action: 'create' do |f| %>
       <%= f.hidden_field :original_title, value: mov.original_title %>
       <%= f.hidden_field :poster_path, value: mov.poster_path %>
-      <%= f.submit %>
+      <%= f.submit "Add to Watchlist" %>
       <% end %>
     </div>
   </li>
