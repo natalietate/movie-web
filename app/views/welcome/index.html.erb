@@ -1,7 +1,7 @@
 <h1>Welcome#index</h1>
 
-<h1>Movies Saved:</h1>
-<% @movielist.each do |mov| %>
+<h1>My Watchlist</h1>
+<% @user.movies.each do |mov| %>
   <ul>
     <li>
       <%= mov.original_title %> <br>
