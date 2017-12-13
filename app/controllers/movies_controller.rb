@@ -1,6 +1,8 @@
 class MoviesController < ApplicationController
   def index
     @movies = Movie.all
+    movieDb = MovieDbService.new()
+    @popular = movieDb.popular
   end
 
   def show

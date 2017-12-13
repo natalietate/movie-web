@@ -2,3 +2,10 @@
 <% @movies.each do |movie| %>
   <%= movie.title %>
 <% end %>
+
+Popular Movies:
+<% @popular.each do |pop| %>
+<ul>
+  <li><%= pop.original_title %></li>
+  </ul>
+<% end %>
