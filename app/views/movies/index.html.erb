@@ -1,20 +1,20 @@
-<h1>Saved Movies</h1>
-<% @movies.each do |movie| %>
-  <%= movie.title %>
-<% end %>
+<h1>Search for a movie:</h1>
+<div class="form">
+  <%= form_tag('/movies/0/search', method: 'get') do %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag 'Search', type: :submit %>
+  <% end %>
+</div>
 
-Popular Movies:
-<% @popular.each do |pop| %>
-<ul>
-  <%= pop.original_title %>
-  <li><img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{pop.poster_path}" %>"/></li>
+<% @movies[0..2].each do |mov| %>
+  <ul>
+    <li><img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>"/></li>
   </ul>
 <% end %>
 
-Now playing:
-<% @playing.each do |play| %>
-<ul>
-  <%= play.original_title %>
-  <li><img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{play.poster_path}" %>"/></li>
+<h1>Movies Saved:</h1>
+<% @movielist.each do |mov| %>
+  <ul>
+    <li><%= mov.title %></li>
   </ul>
 <% end %>

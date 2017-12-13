@@ -1,13 +1,13 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
-    movieDb = MovieDbService.new()
-    @popular = movieDb.popular
-    @playing = movieDb.playing
-  end
+    @movielist = Movie.all
+    get_movie_db
+    @movies = movie_provider.popular
 
-  def show
-    @movie = Movie.find_by_id(params[:id])
+  end
+  def search
+    @movies = movie_provider.find(params[:q])
+    render 'movies/index'
   end
 
   def new
@@ -26,6 +26,19 @@ class MoviesController < ApplicationController
   private
   def movie_params
     params.require(:movie).permit(:title)
+  end
+
+  def get_movie
+    @movieDb = MovieDbService.new
+    @image_url = @movieDb.configuration.base_url
+  end
+
+  def get_movie_db
+    @movieDb = MovieDbService.new
+  end
+
+  def movie_provider
+    @movie_provider ||= MovieDbService.new
   end
 
 end
