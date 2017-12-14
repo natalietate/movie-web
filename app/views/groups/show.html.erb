@@ -3,7 +3,7 @@
 <%= @group.description %>
 <br><br>
 
-Members
+Members:
 <br><br>
 <% @members.each do |member| %>
       <%= member.email %>
@@ -11,4 +11,9 @@ Members
 <% end %>
 <br>
 
-<%= link_to "Join this group", join_group_path(@group) %>
+<br>
+  <% if @members.ids.include? current_user.id %>
+  <%=  %>
+  <% else %>
+  <%= link_to "Join this group", join_group_path(@group) %>
+  <% end %>
