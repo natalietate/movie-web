@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'welcome/index'
 
+
   root 'welcome#index'
   resources :users
 
@@ -18,5 +19,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :group_watchlists, only: [:create, :destroy]
+  resources :group_watchlists, only: [:create, :destroy] 
+
 end

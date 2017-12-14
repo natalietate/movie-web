@@ -19,13 +19,40 @@ Members:
   <% end %>
 
   <h1>  Add Movies to <%= @group.title %> List:</h1>
+
   <h3>  Select movies and click "Add" to the movies you want the group to vote on... </h3>
+
   <% @user.movies.each do |mov| %>
     <ul>
       <li>
         <%= mov.original_title %> <br>
         <img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>"/> <br>
         </li>
+        <%= form_tag(@watchlist) do %>
+          <%= submit_tag "Add Vote List", class: "btn blue-grey lighten-1" %>
+        <% end %>
       </div>
     </ul>
   <% end %>
+
+<br><br>
+
+<h5>Add Movies to Group Vote List:</h5>
+<p>Select movies and click "Add" to the movies you want the group to vote on</p>
+
+</div>
+
+<!--  Need to get the current user's movies and then give ability to save that movie to the group's movies
+pass in "group_id" and movie_id"
+-->
+<h1>Group's movies</h1>
+
+<% @group.movies.each do |mov| %>
+  <ul>
+    <li>
+      <%= mov.original_title %> <br>
+      <img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>"/> <br>
+      </li>
+    </div>
+  </ul>
+<% end %>
