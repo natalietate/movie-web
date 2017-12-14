@@ -1,0 +1,27 @@
+<h1>Create a new group!</h1>
+
+<div>
+  <%= form_with model: @group, local: true do |f| %>
+  <% if @group.errors.any? %>
+    <div id="explain_error">
+      <h2>
+        Uh oh!
+        <%= pluralize(@group.errors.count, "error") %>
+        prohibited this post from being saved:
+      </h2>
+      <ul>
+        <% @group.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+  <% end %>
+    <%= f.label "Group Title:" %>
+    <%= f.text_field :title %>
+    <br>
+    <%= f.label "Group Description:" %>
+    <%= f.text_area :description %>
+    <br>
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
