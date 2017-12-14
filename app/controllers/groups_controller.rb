@@ -6,6 +6,7 @@ class GroupsController < ApplicationController
 
   def show
     get_group
+    @members = @group.users
   end
 
   def new
@@ -15,10 +16,21 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    @join_group = @group.user_groups.build(:user_id => current_user.id)
       if @group.save
         redirect_to group_path(@group)
       else
         render 'new', notice: 'Oops!'
+      end
+  end
+
+  def join
+    @group = Group.find(params[:id])
+    @join_group = @group.user_groups.build(:user_id => current_user.id)
+      if @join_group.save
+        redirect_to(@group, :notice => 'You have joined this group.')
+      else
+        redirect_to(@group, :notice => 'Join error.')
       end
   end
 

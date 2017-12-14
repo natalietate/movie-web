@@ -1,3 +1,14 @@
 <h1>Group: <%= @group.title %> </h1>
-
+<br>
 <%= @group.description %>
+<br><br>
+
+Members
+<br><br>
+<% @members.each do |member| %>
+      <%= member.email %>
+    <br>
+<% end %>
+<br>
+
+<%= link_to "Join this group", join_group_path(@group) %>

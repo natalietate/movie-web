@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :groups, only: [:new, :create, :show]
-  resources :group_watchlists, only: [:create, :destroy]
+  resources :groups, only: [:new, :create, :show] do
+    member do
+      get 'join'
+    end
+  end
 
+  resources :group_watchlists, only: [:create, :destroy]
 end
