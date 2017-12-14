@@ -11,7 +11,6 @@ class GroupsController < ApplicationController
   end
 
   def new
-
     @group = Group.new
   end
 
@@ -22,18 +21,6 @@ class GroupsController < ApplicationController
         redirect_to group_path(@group)
       else
         render 'new', notice: 'Oops!'
-      end
-  end
-
-  def create_list
-    get_group
-    get_movie
-    @watchlist = @group.group_watchlists.build(params[:id])
-    @watchlist.group_id = @group.id
-      if @watchlist.save
-        redirect_to root_path
-      else
-        render 'movies/index'
       end
   end
 
@@ -49,24 +36,12 @@ class GroupsController < ApplicationController
 
   private
 
-    def get_user
-      @user = User.find_by_id(params[:id])
-    end
-
     def get_group
       @group = Group.find(params[:id])
     end
 
     def group_params
       params.require(:group).permit(:title, :description)
-    end
-
-    def get_movie
-      @movie = Movie.new(movie_params)
-    end
-
-    def movie_params
-      params.permit(:original_title, :poster_path)
     end
 
 end
