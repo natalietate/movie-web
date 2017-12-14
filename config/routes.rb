@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   resources :users
+
   resources :movies do
     collection do
       get 'search'
