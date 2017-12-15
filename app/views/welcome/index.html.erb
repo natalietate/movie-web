@@ -13,4 +13,9 @@
 <% end %>
 
 <h1>My Groups</h1>
+<% @user.groups.each do |group| %>
+<ul>
+  <li><%= link_to group.title, group_path(group) %></li>
+  </ul>
+<% end %>
 <%= link_to "Create a Group", new_group_path %>

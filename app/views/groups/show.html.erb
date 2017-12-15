@@ -18,29 +18,44 @@ Members:
 
   <h1>  Add Movies to <%= @group.title %> List:</h1>
 
-  <h3>  Select movies and click "Add" to the movies you want the group to vote on... </h3>
+<br><br>
 
-  <% @user.movies.each do |mov| %>
-    <ul>
+<h3>Add Movies to Group Vote List:</h2>
+<p>Select movies and click "Add" to the movies you want the group to vote on</p>
+<%= form_tag(@group_watch) do %>
+  <ul>
+    <%= collection_check_boxes(:group, :movie_ids, @user.movies, :id, :original_title) do |b| %>
+    <%= hidden_field_tag(:id, @group.id)%>
       <li>
-        <%= mov.original_title %> <br>
-        </li>
-        <%= form_tag do %>
-          <%= submit_tag "Add Vote List" %>
-        <% end %>
-      </div>
-    </ul>
-  <% end %>
+      <%= b.check_box %>
+      <%= b.label %>
+      </li>
+    <% end %>
+  </ul>
+  <%= submit_tag "Add Movie to Group List" %>
+<% end %>
+</div>
 
 <br><br>
 
-<h5>Add Movies to Group Vote List:</h5>
-<p>Select movies and click "Add" to the movies you want the group to vote on</p>
+<!-- In Progress  -->
+<h3>  IN PROGRESS SECOND METHOD </h3>
 
+<% @user.movies.each do |mov| %>
+  <ul>
+    <li>
+      <%= mov.original_title %> <br>
+      <%= mov.id %>
+      </li>
+    <%= form_tag(@group_watchlist) do %>
+      <%= hidden_field_tag(:group_id, @group.id)%>
+      <%= hidden_field_tag(:movie_id, mov.id) %>
+      <%= submit_tag "Add to vote list" %>
+    <% end %>
 </div>
+  </ul>
+<% end %>
 
-<!--  Need to get the current user's movies and then give ability to save that movie to the group's movies
-pass in "group_id" and movie_id" -->
 <h1>Group's movies</h1>
 
 <% @group.movies.each do |mov| %>
