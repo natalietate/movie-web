@@ -8,6 +8,7 @@ class GroupsController < ApplicationController
     get_group
     @user = current_user
     @members = @group.users
+    @group_watch = GroupWatchlist.new
   end
 
   def new
