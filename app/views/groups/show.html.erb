@@ -33,12 +33,21 @@ Members: <br>
 
 <br><br>
 
+
+<h1>Group's Top Voted Movie:</h1>
+<% if @group.group_watchlists.empty? %>
+  <h5>Looks like this group has no movies to vote for. Why don't you add some?</h5>
+<% else %>
+<% g = @group.movies.order(:cached_weighted_average => :desc).first %>
+<%= g.original_title %>
+<% end %> 
+
 <br><br>
-<h1>Group's Choice:</h1>
-
-
 
 <h1>Group's movies</h1>
+<% if @group.group_watchlists.empty? %>
+  <h5>Looks like this group has no movies to vote for. Why don't you add some?</h5>
+<% end %>
 <% @group.group_watchlists.each do |itm| %>
   <ul>
     <li>
