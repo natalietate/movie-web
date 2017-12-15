@@ -3,8 +3,7 @@
 <h2>Description: <%= @group.description %></h2>
 <br><br>
 
-Members:
-<br><br>
+Members: <br>
 <% @members.each do |member| %>
       <%= member.email %>
     <br>
@@ -16,46 +15,25 @@ Members:
   <%= link_to "Join this group", join_group_path(@group) %>
 <% end %>
 
-  <h1>  Add Movies to <%= @group.title %> List:</h1>
-
-<br><br>
-
-<h3>Add Movies to Group Vote List:</h2>
-<p>Select movies and click "Add" to the movies you want the group to vote on</p>
+<h2>  Add Movies to <%= @group.title %> List:</h2>
+<p>Select movies from your Watchlist and click "Add" to the movies for the group</p>
+<br>
 <%= form_tag(@group_watch) do %>
   <ul>
     <%= collection_check_boxes(:group, :movie_ids, @user.movies, :id, :original_title) do |b| %>
     <%= hidden_field_tag(:id, @group.id)%>
-      <li>
+
       <%= b.check_box %>
       <%= b.label %>
-      </li>
+
     <% end %>
   </ul>
   <%= submit_tag "Add Movie to Group List" %>
 <% end %>
-</div>
+
 
 
 <br><br>
-
-<!-- In Progress  -->
-<h3>  IN PROGRESS SECOND METHOD </h3>
-
-<% @user.movies.each do |mov| %>
-  <ul>
-    <li>
-      <%= mov.original_title %> <br>
-      <%= mov.id %>
-      </li>
-    <%= form_tag(@group_watchlist) do %>
-      <%= hidden_field_tag(:group_id, @group.id)%>
-      <%= hidden_field_tag(:movie_id, mov.id) %>
-      <%= submit_tag "Add to vote list" %>
-    <% end %>
-</div>
-  </ul>
-<% end %>
 
 <h1>Group's movies</h1>
 <% @group.group_watchlists.each do |itm| %>

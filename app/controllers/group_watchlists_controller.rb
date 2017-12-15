@@ -9,7 +9,7 @@ class GroupWatchlistsController < ApplicationController
 
   def destroy
     GroupWatchlist.destroy(params[:id])
-    redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
 end
