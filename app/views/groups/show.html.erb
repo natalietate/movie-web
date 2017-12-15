@@ -36,6 +36,7 @@ Members:
 <% end %>
 </div>
 
+
 <br><br>
 
 <!-- In Progress  -->
@@ -57,13 +58,12 @@ Members:
 <% end %>
 
 <h1>Group's movies</h1>
-
-<% @group.movies.each do |mov| %>
+<% @group.group_watchlists.each do |itm| %>
   <ul>
     <li>
-      <%= mov.original_title %> <br>
-      <img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>"/> <br>
-      </li>
-    </div>
+      <<%= itm.movie.original_title %> <br>
+      <img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{itm.movie.poster_path}" %>"/> <br>
+      <%= link_to "remove movie from watchlist", group_watchlist_path(itm), method: :delete %> <br>
+    </li>
   </ul>
 <% end %>

@@ -7,4 +7,9 @@ class GroupWatchlistsController < ApplicationController
     redirect_to @group
   end
 
+  def destroy
+    GroupWatchlist.destroy(params[:id])
+    redirect_to root_path
+  end
+
 end
