@@ -3,8 +3,7 @@ class MovieDbService
 
   def initialize
     Tmdb::Api.key(ENV['TMDB_API_KEY'])
-   @configuration = Tmdb::Configuration.new
-
+    @configuration = Tmdb::Configuration.new
   end
 
   def popular

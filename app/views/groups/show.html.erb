@@ -1,6 +1,6 @@
 <h1>Group: <%= @group.title %> </h1>
 <br>
-<%= @group.description %>
+<h2>Description: <%= @group.description %></h2>
 <br><br>
 
 Members:
@@ -10,13 +10,11 @@ Members:
     <br>
 <% end %>
 <br>
-
 <br>
-  <% if @members.ids.include? current_user.id %>
-  <%=  %>
-  <% else %>
+
+<% if !@members.ids.include? current_user.id %>
   <%= link_to "Join this group", join_group_path(@group) %>
-  <% end %>
+<% end %>
 
   <h1>  Add Movies to <%= @group.title %> List:</h1>
 
@@ -26,10 +24,9 @@ Members:
     <ul>
       <li>
         <%= mov.original_title %> <br>
-        <img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>"/> <br>
         </li>
-        <%= form_tag(@watchlist) do %>
-          <%= submit_tag "Add Vote List", class: "btn blue-grey lighten-1" %>
+        <%= form_tag do %>
+          <%= submit_tag "Add Vote List" %>
         <% end %>
       </div>
     </ul>
