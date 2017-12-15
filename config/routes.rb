@@ -19,6 +19,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :group_watchlists, only: [:create, :destroy] 
+  resources :group_watchlists, only: [:create, :destroy]
 
 end

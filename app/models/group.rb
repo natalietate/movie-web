@@ -4,6 +4,6 @@ class Group < ApplicationRecord
   has_many :group_watchlists
   has_many :movies, through: :group_watchlists
 
-  validates :name, uniqueness: true, presence: true
+  validates :title, uniqueness: true, presence: true
 
 end
