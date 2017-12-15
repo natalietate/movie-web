@@ -31,17 +31,30 @@ Members: <br>
   <%= submit_tag "Add Movie to Group List" %>
 <% end %>
 
+<br><br>
 
+
+<h1>Group's Top Voted Movie:</h1>
+<% if @group.group_watchlists.empty? %>
+  <h5>Looks like this group has no movies to vote for. Why don't you add some?</h5>
+<% else %>
+<% g = @group.movies.order(:cached_weighted_average => :desc).first %>
+<%= g.original_title %>
+<% end %> 
 
 <br><br>
 
 <h1>Group's movies</h1>
+<% if @group.group_watchlists.empty? %>
+  <h5>Looks like this group has no movies to vote for. Why don't you add some?</h5>
+<% end %>
 <% @group.group_watchlists.each do |itm| %>
   <ul>
     <li>
       <<%= itm.movie.original_title %> <br>
       <img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{itm.movie.poster_path}" %>"/> <br>
       <%= link_to "remove movie from watchlist", group_watchlist_path(itm), method: :delete %> <br>
+      <%= link_to like_movie_path(itm.movie), method: :put do %> Vote <%= itm.movie.get_upvotes.size %> <% end %>
     </li>
   </ul>
 <% end %>

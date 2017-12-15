@@ -25,6 +25,18 @@ class MoviesController < ApplicationController
       end
   end
 
+  def upvote
+    @movie = Movie.find(params[:id])
+    @movie.upvote_by current_user
+    redirect_back(fallback_location: root_path)
+end
+
+def downvote
+    @movie = Movie.find(params[:id])
+    @movie.downvote_by current_user
+    redirect_back(fallback_location: root_path)
+end
+
   private
 
   def get_movie
