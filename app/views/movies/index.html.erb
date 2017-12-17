@@ -1,26 +1,36 @@
-<h1>Search for a movie:</h1>
-<div class="form">
-  <%= form_tag('/movies/search', method: 'get') do %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag 'Search', type: :submit %>
-  <% end %>
-</div>
-
-<!-- TODO Display these as cards -->
-<%= 'Sorry, movie cannot be found.' if @movies.empty? %>
-<% @movies.each do |mov| %>
-  <ul>
-    <li><%= mov.original_title %> <br>
-    <img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>"/> <br>
-    <%= mov.overview %> <br>
-    <div class="form">
-    <%= form_with model: @movie, local: true, action: 'create' do |f| %>
-      <%= f.hidden_field :original_title, value: mov.original_title %>
-      <%= f.hidden_field :poster_path, value: mov.poster_path %>
-      <%= f.hidden_field :overview, value: mov.overview %>
-      <%= f.submit "Add to Watchlist" %>
-      <% end %>
+<div class="container">
+  <h1>Add a Movie to Your Watch List</h1>
+  <form>
+    <div class="form-group">
+    <%= form_tag('/movies/search', method: 'get') do %>
+      <%= text_field_tag(:q, "", class: "form-control") %>
+      <br>
+      <%= submit_tag 'Search Movies', type: :submit, class: 'btn btn-primary' %>
     </div>
-  </li>
-  </ul>
-<% end %>
+    <% end %>
+  </form>
+
+  <!-- TODO Display these as cards -->
+  <%= 'Sorry, movie cannot be found. Please try again.' if @movies.empty? %>
+
+  <div class="card-columns">
+  <% @movies[0..11].each do |mov| %>
+    <div class="card text-center">
+      <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>" alt="<%= mov.original_title %>">
+      <div class="card-body">
+        <h4 class="card-title"><%= mov.original_title %></h4>
+        <p class="card-text">
+          <div class="form">
+          <%= form_with model: @movie, local: true, action: 'create' do |f| %>
+            <%= f.hidden_field :original_title, value: mov.original_title %>
+            <%= f.hidden_field :poster_path, value: mov.poster_path %>
+            <%= f.hidden_field :overview, value: mov.overview %>
+            <%= f.submit "Add to Watch List", class: 'btn btn-primary' %>
+            <% end %>
+          </div>
+        </p>
+      </div>
+    </div>
+  <% end %>
+  </div>
+  </div>

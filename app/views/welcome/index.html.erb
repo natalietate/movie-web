@@ -45,7 +45,7 @@
 <br><br>
 
   <h2>My Watchlist</h2>
-  <div class="card-deck">
+  <div class="card-columns">
     <% @user.movies.each do |mov| %>
     <div class="card text-center" style="max-width: 10rem;">
       <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>" alt="Card image cap">
