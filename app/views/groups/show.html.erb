@@ -3,7 +3,9 @@
     <div class="col-8">
       <h1>Group: <%= @group.title %> </h1>
       <h3>Description: <%= @group.description %></h3>
-      <h4>Happening: <%= @group.event_time %> on <%= @group.event_date %></h4>
+      <h4>Happening: <%= local_time(@group.event_time, '%l:%M%P') %> on <%= local_time(@group.event_date, '%B %e, %Y') %></h4>
+
+
     </div>
     <div class="col">
       <h3>Members: </h3>
