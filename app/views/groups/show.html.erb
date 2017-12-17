@@ -25,6 +25,10 @@
     <h2> Add Movies to the <%= @group.title %> Movie Night Watchlist:</h2>
     <p>Select movies from your Watchlist and click "Add" to the movies for the group</p>
 
+    <% if @user.user_watchlists.empty? %>
+      <h5>Looks like you don't have any movies to pick from! Why don't you add some to your own Watch List first?</h5>
+      <%= link_to "Search for Movies", movies_path, class: "btn btn-primary" %>
+  <% else %>
     <div class="form">
       <%= form_tag(@group_watch) do %>
           <%= collection_check_boxes(:group, :movie_ids, @user.movies, :id, :original_title) do |b| %>
@@ -39,6 +43,7 @@
         <%= submit_tag "Add Movie to Group List", class: 'btn btn-primary' %>
       <% end %>
     </div>
+  <% end %>
     <br>
 
   <div class="row align-items-center">
