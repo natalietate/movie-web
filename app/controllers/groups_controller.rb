@@ -1,6 +1,4 @@
 class GroupsController < ApplicationController
-  before_action :check_group_member, only: [:show]
-
 
   def index
     @groups = Group.all
