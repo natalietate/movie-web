@@ -1,4 +1,4 @@
-<h1>Create a new group!</h1>
+<h1>Create a new group event</h1>
 
 <div>
   <%= form_with model: @group, local: true do |f| %>
@@ -15,16 +15,16 @@
         <% end %>
       </ul>
   <% end %>
-    <%= f.label "Group Title:" %>
+    <%= f.label "Give your movie night a name:" %>
     <%= f.text_field :title %>
     <br>
-    <%= f.label "Group Description:" %>
+    <%= f.label "And a description..." %>
     <%= f.text_area :description %>
     <br>
-    <%= f.label "Event Date" %>
+    <%= f.label "When is movie night happening?" %>
     <%= f.date_select :event_date, :default => Date.today %>
     <br>
-    <%= f.label "Event Time" %>
+    <%= f.label "What time?" %>
     <%= f.time_select :event_time, :default => Time.now, ampm: true, minute_step: 15 %>
     <br>
     <%= f.submit %>

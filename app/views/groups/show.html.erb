@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-8">
-      <h1>Group: <%= @group.title %> </h1>
-      <h3>Description: <%= @group.description %></h3>
-      <h4>Happening: <%= local_time(@group.event_time, '%l:%M%P') %> on <%= local_time(@group.event_date, '%B %e, %Y') %></h4>
+      <h1><%= @group.title %> </h1>
+      <h3>Movie night description: <%= @group.description %></h3>
+      <h4><%= local_time(@group.event_time, '%l:%M%P') %> on <%= local_time(@group.event_date, '%B %e, %Y') %></h4>
 
 
     </div>
@@ -22,7 +22,7 @@
   </div>
 
 
-  <h2> Add Movies to the <%= @group.title %> Watchlist:</h2>
+  <h2> Add Movies to the <%= @group.title %> Movie Night Watchlist:</h2>
   <p>Select movies from your Watchlist and click "Add" to the movies for the group</p>
 
   <div class="form">

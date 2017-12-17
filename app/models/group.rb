@@ -6,4 +6,10 @@ class Group < ApplicationRecord
 
   validates :title, uniqueness: true, presence: true
 
+   scope :upcoming, -> { order(event_date: :asc, event_time: :asc)}
+
+   scope :recent, -> { order(event_date: :desc, event_time: :desc)}
+
+
+
 end
