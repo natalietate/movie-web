@@ -44,7 +44,7 @@ end
   end
 
   def movie_params
-    params.permit(:original_title, :poster_path)
+    params.permit(:original_title, :poster_path, :overview)
   end
 
   def get_movie_db
