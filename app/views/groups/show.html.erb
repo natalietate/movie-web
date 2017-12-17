@@ -1,8 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-8">
-      <h1>Group: <%= @group.title %> </h1>
-      <h3>Description: <%= @group.description %></h3>
+      <h1><%= @group.title %> </h1>
+      <h3>Movie night description: <%= @group.description %></h3>
+      <h4><%= local_time(@group.event_time, '%l:%M%P') %> on <%= local_time(@group.event_date, '%B %e, %Y') %></h4>
+
+
     </div>
     <div class="col">
       <h3>Members: </h3>
@@ -12,32 +15,31 @@
           </ul>
         <% end %>
         <br>
-        <% if @members.ids.include? current_user.id %>
+        <% if !@members.ids.include? current_user.id %>
           <%= link_to "Join this group", join_group_path(@group), class: 'btn btn-primary' %>
         <% end %>
     </div>
   </div>
 
+  <% if @members.ids.include? current_user.id %>
+    <h2> Add Movies to the <%= @group.title %> Movie Night Watchlist:</h2>
+    <p>Select movies from your Watchlist and click "Add" to the movies for the group</p>
 
-  <h2> Add Movies to the <%= @group.title %> Watchlist:</h2>
-  <p>Select movies from your Watchlist and click "Add" to the movies for the group</p>
-
-  <div class="form">
-    <%= form_tag(@group_watch) do %>
-        <%= collection_check_boxes(:group, :movie_ids, @user.movies, :id, :original_title) do |b| %>
-        <div class="form-check">
-          <%= hidden_field_tag(:id, @group.id)%>
-          <div class="form-check-label">
-            <%= b.check_box class: "form-check-input"  %>
-            <%= b.label  %>
+    <div class="form">
+      <%= form_tag(@group_watch) do %>
+          <%= collection_check_boxes(:group, :movie_ids, @user.movies, :id, :original_title) do |b| %>
+          <div class="form-check">
+            <%= hidden_field_tag(:id, @group.id)%>
+            <div class="form-check-label">
+              <%= b.check_box class: "form-check-input"  %>
+              <%= b.label  %>
+            </div>
           </div>
-        </div>
-        <% end %>
-      <%= submit_tag "Add Movie to Group List", class: 'btn btn-primary' %>
-    <% end %>
-  </div>
-
-  <br>
+          <% end %>
+        <%= submit_tag "Add Movie to Group List", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+    <br>
 
   <div class="row align-items-center">
     <div class="col-4">
@@ -52,12 +54,11 @@
         <h4 class="card-title text-center "> <%= g.original_title %></h4>
       </div>
     </div>
-    <% end %>
     </div>
     <div class="col">
       <p class="card-text"> <%= g.overview %></p>
-
     </div>
+      <% end %>
   </div>
 
   <h1>Group's Watchlist:</h1>
@@ -66,7 +67,7 @@
   <% end %>
       <div class="card-deck">
   <% @group.group_watchlists.each do |itm| %>
-  <div class="card text-center" style="width: 15rem;">
+  <div class="card text-center m-5" style="width: 15rem;">
     <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{itm.movie.poster_path}" %>" alt="Movie Poster">
     <div class="card-body">
       <h4 class="card-title"> <%= itm.movie.original_title %></h4>
@@ -79,4 +80,5 @@
   </div>
   <% end %>
   </div>
+  <% end %>
 </div>

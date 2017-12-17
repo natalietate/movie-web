@@ -2,16 +2,44 @@
   <h1>Movie Night</h1>
   <p>Create the ultimate movie night with your friends</p>
 
-  <h2>My Groups</h2>
+  <h2>Your Upcoming Group Events</h2>
   <div class="list-group">
     <div class='row'>
-      <% @user.groups.each do |group| %>
+      <% @user.groups.upcoming.each do |group| %>
+      <% if group.event_date >= Date.today %>
         <div class="col-sm">
-          <a href="<%= group_path(group) %>" class="list-group-item list-group-item-action"><%= group.title %></a>
+          <a href="<%= group_path(group) %>" class="list-group-item list-group-item-action"><%= group.title %> on <%= local_date(group.event_date, '%B %e, %Y') %></a>
         </div>
+        <% end %>
       <% end %>
     </div>
   </div>
+<br>
+
+<h2>Your Recent Group Events</h2>
+<div class="list-group">
+  <div class='row'>
+    <% @user.groups.recent[0..5].each do |group| %>
+    <% if group.event_date <= Date.today %>
+      <div class="col-sm">
+        <a href="<%= group_path(group) %>" class="list-group-item list-group-item-action"><%= group.title %> on <%= local_date(group.event_date, '%B %e, %Y') %></a>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<br>
+
+<h1>All Groups</h1>
+<% @groups.upcoming.each do |group| %>
+<% if group.event_date >= Date.today %>
+  <div class="col-sm">
+    <a href="<%= group_path(group) %>" class="list-group-item list-group-item-action"><%= group.title %> on <%= local_date(group.event_date, '%B %e, %Y') %></a>
+  </div>
+  <% end %>
+<% end %>
+
+
 <br>
 <%= link_to "Create a Group", new_group_path, class: "btn btn-primary" %>
 <br><br>

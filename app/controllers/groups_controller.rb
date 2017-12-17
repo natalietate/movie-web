@@ -1,6 +1,4 @@
 class GroupsController < ApplicationController
-  before_action :check_group_member, only: [:show]
-
 
   def index
     @groups = Group.all
@@ -44,7 +42,7 @@ class GroupsController < ApplicationController
     end
 
     def group_params
-      params.require(:group).permit(:title, :description)
+      params.require(:group).permit(:title, :description, :event_time, :event_date)
     end
 
 end
