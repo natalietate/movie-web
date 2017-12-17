@@ -1,21 +1,31 @@
-<h1>Welcome#index</h1>
+<div class="container">
+  <h1>Movie Night</h1>
+  <p>Create the ultimate movie night with your friends</p>
 
-<h1>My Watchlist</h1>
-<% @user.movies.each do |mov| %>
-  <ul>
-    <li>
-      <%= mov.original_title %> <br>
-      <img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>"/> <br>
-      </li>
+  <h2>My Groups</h2>
+  <div class="list-group">
+    <div class='row'>
+      <% @user.groups.each do |group| %>
+        <div class="col-sm">
+          <a href="<%= group_path(group) %>" class="list-group-item list-group-item-action"><%= group.title %></a>
+        </div>
+      <% end %>
     </div>
+  </div>
+<br>
+<%= link_to "Create a Group", new_group_path, class: "btn btn-primary" %>
+<br><br>
 
-  </ul>
-<% end %>
-
-<h1>My Groups</h1>
-<% @user.groups.each do |group| %>
-<ul>
-  <li><%= link_to group.title, group_path(group) %></li>
-  </ul>
-<% end %>
-<%= link_to "Create a Group", new_group_path %>
+  <h2>My Watchlist</h2>
+  <div class="card-deck">
+    <% @user.movies.each do |mov| %>
+    <div class="card text-center" style="max-width: 10rem;">
+      <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text"><%= mov.original_title %> </p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  </div>
+<br><br>

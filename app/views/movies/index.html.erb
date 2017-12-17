@@ -12,10 +12,12 @@
   <ul>
     <li><%= mov.original_title %> <br>
     <img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>"/> <br>
+    <%= mov.overview %> <br>
     <div class="form">
     <%= form_with model: @movie, local: true, action: 'create' do |f| %>
       <%= f.hidden_field :original_title, value: mov.original_title %>
       <%= f.hidden_field :poster_path, value: mov.poster_path %>
+      <%= f.hidden_field :overview, value: mov.overview %>
       <%= f.submit "Add to Watchlist" %>
       <% end %>
     </div>
