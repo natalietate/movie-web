@@ -3,6 +3,7 @@
     <div class="col-8">
       <h1>Group: <%= @group.title %> </h1>
       <h3>Description: <%= @group.description %></h3>
+      <h4>Happening: <%= @group.event_time %> on <%= @group.event_date %></h4>
     </div>
     <div class="col">
       <h3>Members: </h3>
@@ -52,12 +53,11 @@
         <h4 class="card-title text-center "> <%= g.original_title %></h4>
       </div>
     </div>
-    <% end %>
     </div>
     <div class="col">
       <p class="card-text"> <%= g.overview %></p>
-
     </div>
+      <% end %>
   </div>
 
   <h1>Group's Watchlist:</h1>

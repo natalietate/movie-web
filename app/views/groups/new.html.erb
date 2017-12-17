@@ -21,6 +21,12 @@
     <%= f.label "Group Description:" %>
     <%= f.text_area :description %>
     <br>
+    <%= f.label "Event Date" %>
+    <%= f.date_select :event_date, :default => Date.today %>
+    <br>
+    <%= f.label "Event Time" %>
+    <%= f.time_select :event_time, :default => Time.now, ampm: true, minute_step: 15 %>
+    <br>
     <%= f.submit %>
   </div>
 <% end %>
