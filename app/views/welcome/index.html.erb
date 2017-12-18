@@ -1,64 +1,6 @@
 <div class="container">
   <h1 class="display-1">Movie Night</h1>
   <p class="lead">Create the ultimate movie night with your friends!</p>
-
-  <div class="row">
-    <div class="col">
-      <h2>Your Upcoming Movie Nights</h2>
-      <% @user.groups.upcoming.each do |group| %>
-        <% if group.event_date >= Date.today %>
-          <div class="col-sm">
-            <a href="<%= group_path(group) %>" class="list-group-item list-group-item-action"><%= group.title %> on <%= local_date(group.event_date, '%B %e, %Y') %></a>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="col">
-      <h2>Your Previous Movie Nights</h2>
-      <% @user.groups.recent[0..5].each do |group| %>
-        <% if group.event_date <= Date.today %>
-          <div class="col-sm">
-            <a href="<%= group_path(group) %>" class="list-group-item list-group-item-action"><%= group.title %> on <%= local_date(group.event_date, '%B %e, %Y') %></a>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="col">
-      <h1>All Upcoming Movie Nights</h1>
-      <div class="list-group">
-        <% @groups.upcoming.each do |group| %>
-          <% if group.event_date >= Date.today %>
-            <a href="<%= group_path(group) %>" class="list-group-item list-group-item-action"><%= group.title %> on <%= local_date(group.event_date, '%B %e, %Y') %></a>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <%= link_to "Create a Movie Night", new_group_path, class: "btn btn-primary" %>
-    <br><br>
-  </div>
-
-  <h2>My Watchlist</h2>
-  <% if @user.movies.empty? %>
-    <h5>Looks like you haven't added any movies yet!</h5>
-  <% end %>
-  <div class="card-columns">
-    <% @user.movies.each do |mov| %>
-      <div class="card text-center" style="max-width: 10rem;">
-        <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>" alt="Card image cap">
-        <div class="card-body">
-          <p class="card-text"><%= mov.original_title %> </p>
-        </div>
-      </div>
-    <% end %>
-  </div>
-
-  <br><br>
-  <div>
-    <%= link_to "Add Movies to Watch List", movies_path, class: "btn btn-primary" %>
-    <br><br>
-  </div>
-
+  <%= render 'groups/events' %>
+  <%= render 'movies/watchlist' %>
 </div>
