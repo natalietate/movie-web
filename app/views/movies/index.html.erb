@@ -7,7 +7,6 @@
     <% end %>
   </div>
 
-  <!-- TODO Display these as cards -->
   <%= 'Sorry, movie cannot be found.' if @movies.empty? %>
   <div class="card-columns">
     <% @movies.each do |mov| %>
@@ -18,13 +17,13 @@
         <p class="card-text"> <%= mov.overview %> </p>
         <div class="form">
         <%= form_with model: @movie, local: true, action: 'create' do |f| %>
-        <%= f.hidden_field :original_title, value: mov.original_title %>
-        <%= f.hidden_field :poster_path, value: mov.poster_path %>
-        <%= f.hidden_field :overview, value: mov.overview %>
-        <%= f.submit "Add to Watchlist", class: 'btn btn-primary' %>
-      <% end %>
+          <%= f.hidden_field :original_title, value: mov.original_title %>
+          <%= f.hidden_field :poster_path, value: mov.poster_path %>
+          <%= f.hidden_field :overview, value: mov.overview %>
+          <%= f.submit "Add to Watchlist", class: 'btn btn-primary' %>
+        <% end %>
+        </div>
       </div>
-    </div>
     </div>
     <% end %>
   </div>

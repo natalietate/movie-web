@@ -1,20 +1,20 @@
 <h1>Create a new group event</h1>
 
-<div>
+<div class="container">
   <%= form_with model: @group, local: true do |f| %>
-  <% if @group.errors.any? %>
-    <div id="explain_error">
-      <h2>
-        Uh oh!
-        <%= pluralize(@group.errors.count, "error") %>
-        prohibited this post from being saved:
-      </h2>
-      <ul>
-        <% @group.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-  <% end %>
+    <% if @group.errors.any? %>
+      <div id="explain_error">
+        <h2>
+          Uh oh!
+          <%= pluralize(@group.errors.count, "error") %>
+          prohibited this post from being saved:
+        </h2>
+        <ul>
+          <% @group.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
     <%= f.label "Give your movie night a name:" %>
     <%= f.text_field :title %>
     <br>
@@ -29,5 +29,5 @@
     <br>
     <%= f.submit %>
   </div>
-<% end %>
+  <% end %>
 </div>
