@@ -8,19 +8,21 @@
   </div>
 
   <%= 'Sorry, movie cannot be found.' if @movies.empty? %>
-  <div class="card-columns">
+  <div class="row equal-height">
     <% @movies.each do |mov| %>
-    <div class="card text-center">
-      <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>" alt="<%= mov.original_title %>">
-      <div class="card-body">
-        <h4 class="card-title"><%= mov.original_title %></h4>
-        <div class="form">
-        <%= form_with model: @movie, local: true, action: 'create' do |f| %>
-          <%= f.hidden_field :original_title, value: mov.original_title %>
-          <%= f.hidden_field :poster_path, value: mov.poster_path %>
-          <%= f.hidden_field :overview, value: mov.overview %>
-          <%= f.submit "Add to Watchlist", class: 'btn btn-primary' %>
-        <% end %>
+    <div class="col-sm-3">
+      <div class="card text-center">
+        <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>" alt="<%= mov.original_title %>">
+        <div class="card-body">
+          <h4 class="card-title"><%= mov.original_title %></h4>
+          <div class="form">
+          <%= form_with model: @movie, local: true, action: 'create' do |f| %>
+            <%= f.hidden_field :original_title, value: mov.original_title %>
+            <%= f.hidden_field :poster_path, value: mov.poster_path %>
+            <%= f.hidden_field :overview, value: mov.overview %>
+            <%= f.submit "Add to Watchlist", class: 'btn btn-primary' %>
+          <% end %>
+          </div>
         </div>
       </div>
     </div>

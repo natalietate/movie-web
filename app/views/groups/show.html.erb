@@ -44,41 +44,38 @@
 
   <br>
 
-  <div class="row align-items-center">
-    <div class="col-4">
-      <h3>Group's Top Voted Movie:</h3>
-      <% if @group.group_watchlists.empty? %>
-        <h5>Looks like this group has no movies added yet.</h5>
-      <% else %>
-        <% g = @group.movies.order(:cached_weighted_average => :desc).first %>
-        <div class="card">
-          <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{g.poster_path}" %>" alt="Movie Poster">
-        <div class="card-body">
-          <h4 class="card-title text-center "> <%= g.original_title %></h4>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <p class="card-text"> <%= g.overview %></p>
-    </div>
+  <div>
+    <h1 class="display-4 text-center">Top Movie:</h1>
+    <% if @group.group_watchlists.empty?%>
+      <h5>Looks like this group has no movies added yet.</h5>
+    <% else %>
+    <% g = @group.movies.order(:cached_weighted_average => :desc).first %>
+    <% if g.get_upvotes.empty? %>
+      <h5>Looks like no one has voted yet. Go cast your vote for what movie we should watch!</h5>
+    <% else %>
+      <img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{g.poster_path}" %>" class="img-fluid mx-auto d-block" alt="Responsive image">
+      <p class="lead text-center"><strong><%= g.original_title %></strong> is in the lead with <%= pluralize(g.get_upvotes.size, 'vote') %>!</p>
     <% end %>
   </div>
+    <% end %>
 
   <h1>Group's Watchlist:</h1>
   <% if @group.group_watchlists.empty? %>
     <h5>Looks like this group has no movies to vote for. Why don't you add some?</h5>
   <% end %>
-  <div class="card-columns">
+  <div class="row equal-height">
     <% @group.group_watchlists.each do |itm| %>
-    <div class="card text-center">
-      <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{itm.movie.poster_path}" %>" alt="Movie Poster">
-      <div class="card-body">
-        <h4 class="card-title "> <%= itm.movie.original_title %></h4>
-        <%= link_to like_movie_path(itm.movie), method: :put do %> <i class="far fa-thumbs-up fa-lg"></i><% end %>
-        <%= itm.movie.get_upvotes.size %> <br> <br>
-        <%= link_to dislike_movie_path(itm.movie), method: :put do %> Remove Vote <% end %> <br>
-        <!-- TODO Add logic so only the person who added it can remove it - is that possible? -->
-        <%= link_to "remove from watchlist", group_watchlist_path(itm), method: :delete, class: 'btn btn-sm btn-primary' %> <br>
+    <div class="col-sm-3">
+      <div class="card text-center">
+        <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{itm.movie.poster_path}" %>" alt="Movie Poster">
+        <div class="card-body">
+          <h4 class="card-title "> <%= itm.movie.original_title %></h4>
+          <%= link_to like_movie_path(itm.movie), method: :put do %> <i class="far fa-thumbs-up fa-lg"></i><% end %>
+          <%= itm.movie.get_upvotes.size %> <br> <br>
+          <%= link_to dislike_movie_path(itm.movie), method: :put do %> Remove Vote <% end %> <br>
+          <!-- TODO Add logic so only the person who added it can remove it - is that possible? -->
+          <%= link_to "remove from watchlist", group_watchlist_path(itm), method: :delete, class: 'btn btn-sm btn-primary' %> <br>
+        </div>
       </div>
     </div>
     <% end %>
