@@ -70,9 +70,6 @@
         <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{itm.movie.poster_path}" %>" alt="Movie Poster">
         <div class="card-body">
           <h4 class="card-title "> <%= itm.movie.original_title %></h4>
-          <%= link_to like_movie_path(itm.movie), method: :put do %> <i class="far fa-thumbs-up fa-lg"></i><% end %>
-          <%= itm.movie.get_upvotes.size %> <br> <br>
-          <%= link_to dislike_movie_path(itm.movie), method: :put do %> Remove Vote <% end %> <br>
           <!-- TODO Add logic so only the person who added it can remove it - is that possible? -->
           <%= link_to "remove from watchlist", group_watchlist_path(itm), method: :delete, class: 'btn btn-sm btn-primary' %> <br>
         </div>
