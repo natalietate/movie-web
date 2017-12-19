@@ -22,7 +22,7 @@ class GroupsController < ApplicationController
       if @group.save
         redirect_to group_path(@group)
       else
-        render 'new', notice: 'Oops! Something went wrong'
+        render 'new'
       end
   end
 
