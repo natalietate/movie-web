@@ -20,11 +20,15 @@
             <%= f.hidden_field :original_title, value: mov.original_title %>
             <%= f.hidden_field :poster_path, value: mov.poster_path %>
             <%= f.hidden_field :overview, value: mov.overview %>
-            <%= f.submit "Add to Watchlist", class: 'btn btn-primary' %>
-          <% end %>
           </div>
         </div>
+        <div class="card-footer">
+      <small class="text-muted">
+      <%= f.submit "add", class: 'btn btn-sm btn-outline-primary' %></small>
+    <% end %>
+    </div>
       </div>
+      <br>
     </div>
     <% end %>
   </div>
