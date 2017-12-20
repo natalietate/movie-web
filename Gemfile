@@ -10,7 +10,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'devise'
 gem 'themoviedb'
 gem 'jquery-rails'
-gem 'acts_as_votable', '~> 0.11.1'
+# gem 'acts_as_votable', '~> 0.11.1'
 gem 'bootstrap', '~> 4.0.0.beta2'
 gem 'local_time'
 
