@@ -70,10 +70,10 @@
         <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{itm.movie.poster_path}" %>" alt="Movie Poster">
         <div class="card-body">
           <h4 class="card-title "> <%= itm.movie.original_title %></h4>
-          <td><%= button_to '+1', upvote_group_watchlist_path(itm.movie.id), method: :post %></td>
-
-
-          <!-- TODO Add logic so only the person who added it can remove it - is that possible? -->
+          Votes: <%= itm.votes %>
+          <br><br>
+          <td><%= button_to '+1', upvote_group_watchlist_path(:movie_id => itm.movie.id, :group_id => itm.group.id), method: :post %></td>
+          <br>
           <%= link_to "remove from watchlist", group_watchlist_path(itm), method: :delete, class: 'btn btn-sm btn-primary' %> <br>
         </div>
       </div>

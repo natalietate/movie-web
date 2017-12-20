@@ -23,26 +23,14 @@ class GroupWatchlistsController < ApplicationController
 
 
   def upvote
-    # need to find the entry on the group_watchlist table by the group_watchlist ID
-    @grouplist = GroupWatchlist.find_by(movie_id: 2, group_id: 1)
-    # update the votes column on that entry on the table by 1
+    get_group
+    @movie = params[:movie_id]
+    @thegroup = params[:group_id]
+    @grouplist = GroupWatchlist.find_by(movie_id: @movie, group_id: @thegroup)
     @grouplist.votes +=1
-    # save
     @grouplist.save
-    redirect_to root_path
+    redirect_to @group
   end
-
-  # def upvote
-  #   # need to find the entry on the group_watchlist table by the group_watchlist ID
-  #   get_group
-  #   @movie = Movie.find_by(params[:id])
-  #   @grouplist = GroupWatchlist.find_by(movie_id: @movie, group_id: @group)
-  #   # update the votes column on that entry on the table by 1
-  #   @grouplist.votes +=1
-  #   # save
-  #   @grouplist.save
-  #   redirect_to root_path
-  # end
 
   def get_group
     @group = Group.find(params[:id])
