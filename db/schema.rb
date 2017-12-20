@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171217175422) do
+ActiveRecord::Schema.define(version: 20171219194131) do
 
   create_table "group_watchlists", force: :cascade do |t|
     t.integer "group_id"
     t.integer "movie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "votes", default: 0
     t.index ["group_id"], name: "index_group_watchlists_on_group_id"
     t.index ["movie_id"], name: "index_group_watchlists_on_movie_id"
   end
