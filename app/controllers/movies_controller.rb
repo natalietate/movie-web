@@ -34,7 +34,7 @@ class MoviesController < ApplicationController
   private
 
   def get_movie
-    @movie = Movie.new(movie_params)
+    @movie = Movie.find_or_create_by(movie_params)
   end
 
   def movie_params
