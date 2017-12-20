@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-8">
-      <h1><%= @group.title %> </h1>
-      <h3>Movie night description: <%= @group.description %></h3>
-      <h4><%= local_time(@group.event_time, '%l:%M%P') %> on <%= local_time(@group.event_date, '%B %e, %Y') %></h4>
+      <h1 class="display-3"><%= @group.title %> </h1>
+     <p><%= @group.description %></p>
+      <h4> <%= local_time(@group.event_date, '%B %e, %Y') %> at <%= local_time(@group.event_time, '%l:%M%P') %> </h4>
     </div>
     <div class="col">
-      <h3>Members: </h3>
+      <h3 class='display-4'>Members: </h3>
       <% @members.each do |member| %>
         <ul class="list-group">
           <li class="list-group-item"><%= member.email %></li>
@@ -19,11 +19,12 @@
     </div>
   </div>
 
+  <div class="m-5">
   <% if @members.ids.include? current_user.id %>
-    <h2> Add Movies to the <%= @group.title %> Movie Night Watchlist:</h2>
-    <p>Select movies from your Watchlist and click "Add" to the movies for the group</p>
+    <h1 class="display-5"> Add Movies to the <%= @group.title %> Movie Night Watchlist:</h2>
+    <h5>Select movies from your Watchlist and click "Add" to the movies for the group</h5>
     <% if @user.user_watchlists.empty? %>
-      <h5>Looks like you don't have any movies to pick from! Why don't you add some to your own Watch List first?</h5>
+      <p>Looks like you don't have any movies to pick from! Why don't you add some to your own Watch List first?</p>
       <%= link_to "Search for Movies", movies_path, class: "btn btn-primary" %>
     <% else %>
     <div class="form">
@@ -41,44 +42,47 @@
       <% end %>
     </div>
   <% end %>
+</div>
 
-  <br>
 
-  <div>
-    <h1 class="display-4 text-center">Top Movie:</h1>
+  <div class="m-5">
+    <h1 class="display-5">Top Movie:</h1>
     <% if @group.group_watchlists.empty?%>
-      <h5>Looks like this group has no movies added yet.</h5>
+      <p>Nobody has added any movies yet!</p>
     <% else %>
     <% g = @group.group_watchlists.order(:votes => :desc).first %>
     <% if g.votes.zero? %>
-      <h5>Looks like no one has voted yet. Go cast your vote for what movie we should watch!</h5>
+      <p>Looks like no one has voted yet. Go cast your vote for what movie we should watch!</p>
     <% else %>
       <img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{g.movie.poster_path}" %>" class="img-fluid mx-auto d-block" alt="Responsive image">
       <p class="lead text-center"><strong><%= g.movie.original_title %></strong> is in the lead with <%= pluralize(g.votes, 'vote') %>!</p>
     <% end %>
-  </div>
     <% end %>
-
-  <h1>Group's Watchlist:</h1>
-  <% if @group.group_watchlists.empty? %>
-    <h5>Looks like this group has no movies to vote for. Why don't you add some?</h5>
-  <% end %>
-  <div class="row equal-height">
-    <% @group.group_watchlists.each do |itm| %>
-    <div class="col-sm-3">
-      <div class="card text-center">
-        <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{itm.movie.poster_path}" %>" alt="Movie Poster">
-        <div class="card-body">
-          <h4 class="card-title "> <%= itm.movie.original_title %></h4>
-          Votes: <%= itm.votes %>
-          <br><br>
-          <td><%= button_to '+1', upvote_group_watchlist_path(:movie_id => itm.movie.id, :group_id => itm.group.id), method: :post %></td>
-          <br>
-          <%= link_to "remove from watchlist", group_watchlist_path(itm), method: :delete, class: 'btn btn-sm btn-primary' %> <br>
+  </div>
+  <div class="m-5">
+    <h1 class="display-5">Group's Watchlist:</h1>
+    <% if @group.group_watchlists.empty? %>
+      <p>Looks like this group has no movies to vote for. Why don't you add some options from your Watch List?</p>
+    <% end %>
+    <div class="row equal-height">
+      <% @group.group_watchlists.each do |itm| %>
+      <div class="col-sm-3">
+        <div class="card text-center">
+          <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{itm.movie.poster_path}" %>" alt="Movie Poster">
+          <div class="card-body">
+            <h4 class="card-title "> <%= itm.movie.original_title %></h4>
+            Votes: <%= itm.votes %>
+            <br><br>
+            <%= button_to '+1', upvote_group_watchlist_path(:movie_id => itm.movie.id, :group_id => itm.group.id), method: :post, class: 'btn btn-sm btn-primary' %>
+            <br>
+            <% if @members.ids.include? current_user.id %>
+            <%= link_to "remove from list", group_watchlist_path(itm), method: :delete, class: 'btn btn-sm btn-primary' %> <br>
+            <% end %>
+          </div>
         </div>
       </div>
+      <% end %>
     </div>
     <% end %>
   </div>
-  <% end %>
 </div>
