@@ -13,7 +13,6 @@ class GroupWatchlistsController < ApplicationController
   end
 
   def update
-    @grouplist = GroupWatchlist.find(params[:id])
     @grouplist.update(:votes)
       if @grouplist.save
         redirect_to root_path
@@ -24,15 +23,25 @@ class GroupWatchlistsController < ApplicationController
 
 
   def upvote
-    get_group
-    @group.movie_id = @group.find(params[:movie_id])
-    @group.votes +=1
-    @group.save
+    # need to find the entry on the group_watchlist table by the group_watchlist ID
+    @grouplist = GroupWatchlist.find_by(movie_id: 2, group_id: 1)
+    # update the votes column on that entry on the table by 1
+    @grouplist.votes +=1
+    # save
+    @grouplist.save
     redirect_to root_path
   end
 
-  # def group_watchlist_params
-  #   params.permit(:movie_id, :group_id, :votes)
+  # def upvote
+  #   # need to find the entry on the group_watchlist table by the group_watchlist ID
+  #   get_group
+  #   @movie = Movie.find_by(params[:id])
+  #   @grouplist = GroupWatchlist.find_by(movie_id: @movie, group_id: @group)
+  #   # update the votes column on that entry on the table by 1
+  #   @grouplist.votes +=1
+  #   # save
+  #   @grouplist.save
+  #   redirect_to root_path
   # end
 
   def get_group

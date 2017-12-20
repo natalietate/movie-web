@@ -10,8 +10,7 @@ class GroupsController < ApplicationController
     @user = current_user
     @members = @group.users
     @group_watch = GroupWatchlist.new
-    @grouplist = GroupWatchlist.find(params[:id])
-  end
+end
 
   def new
     @group = Group.new
