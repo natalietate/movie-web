@@ -15,6 +15,9 @@
  */
 @import "bootstrap";
 
+$wineberry: #990033;
+$tomato: #FF6347;
+
 .row.equal-height {
   display: flex;
   flex-wrap: wrap;
@@ -31,4 +34,34 @@
 
 .hidden {
   display: none;
+}
+
+
+.btn-primary {
+    color: #fff;
+    background-color: $wineberry;
+    border-color: $wineberry;
+  }
+
+.btn-primary:hover, .btn-primary:active {
+  background-color: $tomato;
+  border-color: $tomato;
+  color: #fff;
+}
+
+.btn-primary a {
+  padding: 0px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-outline-primary, {
+  border: 1px solid $wineberry;
+	color: $wineberry;
+}
+
+.btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active {
+	border-color: $wineberry;
+  background-color: $wineberry;
+  color: #fff;
 }
