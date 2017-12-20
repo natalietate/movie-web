@@ -26,9 +26,9 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    @movie = Movie.find(params[:id])
-    @movie.destroy
-    redirect_to root_path
+      @movie = UserWatchlist.find(params[:id])
+      @movie.destroy
+      redirect_back(fallback_location: root_path)
   end
 
   def upvote
