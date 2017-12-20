@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row mt-5">
     <div class="col-8">
       <h1 class="display-3"><%= @group.title %> </h1>
      <p><%= @group.description %></p>
@@ -21,8 +21,8 @@
 
   <div class="m-5">
   <% if @members.ids.include? current_user.id %>
-    <h1 class="display-4"> Add Movies to the <%= @group.title %> Movie Night Watchlist:</h2>
-    <h5>Select movies from your Watchlist and click "Add" to the movies for the group</h5>
+    <h3> Add movies to the <%= @group.title %> Movie Night Watch List:</h2>
+    <h5>Select movies from your Watch List and the group will vote on what to watch!</h5>
     <% if @user.user_watchlists.empty? %>
       <p>Looks like you don't have any movies to pick from! Why don't you add some to your own Watch List first?</p>
       <%= link_to "Search for Movies", movies_path, class: "btn btn-primary" %>
@@ -47,6 +47,8 @@
 
   <div class="m-5">
     <h1 class="display-4">Top Movie:</h1>
+    <h5>See which movie has received the most votes from group members.</h5>
+
     <% if @group.group_watchlists.empty?%>
       <p>Nobody has added any movies yet!</p>
     <% else %>
@@ -61,6 +63,7 @@
   </div>
   <div class="m-5">
     <h1 class="display-4">Group's Watchlist:</h1>
+    <h5>Here's what group members are interested in viewing during the movie night. See something you'd like to watch? Vote for your favorites!</h5>
     <% if @group.group_watchlists.empty? %>
       <p>Looks like this group has no movies to vote for. Why don't you add some options from your Watch List?</p>
     <% end %>
@@ -73,7 +76,7 @@
             <h4 class="card-title "> <%= itm.movie.original_title %></h4>
             Votes: <%= itm.votes %>
             <br><br>
-            <%= button_to '+1', upvote_group_watchlist_path(:movie_id => itm.movie.id, :group_id => itm.group.id), method: :post, class: 'btn btn-sm btn-primary' %>
+            <%= button_to 'Vote', upvote_group_watchlist_path(:movie_id => itm.movie.id, :group_id => itm.group.id), method: :post, class: 'btn btn-sm btn-primary' %>
             <br>
             <% if @members.ids.include? current_user.id %>
             <%= link_to "remove from list", group_watchlist_path(itm), method: :delete, class: 'btn btn-sm btn-primary' %> <br>

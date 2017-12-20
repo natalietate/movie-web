@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
+  <div class="row m-5">
+    <div class="col-sm-4">
       <h2>Your Upcoming Movie Nights</h2>
       <% @user.groups.upcoming.each do |group| %>
         <% if group.event_date >= Date.today %>
@@ -9,8 +9,11 @@
           </div>
         <% end %>
       <% end %>
+      <div class="col-sm">
+        <%= link_to "Create a Movie Night", new_group_path, class: "btn btn-primary btn-block" %>
+        </div>
     </div>
-    <div class="col">
+    <div class="col-sm-4">
       <h2>Your Previous Movie Nights</h2>
       <% @user.groups.recent.each do |group| %>
         <% if group.event_date <= Date.today %>
@@ -20,8 +23,8 @@
         <% end %>
       <% end %>
     </div>
-    <div class="col">
-      <h1>All Upcoming Movie Nights</h1>
+    <div class="col-sm-4">
+      <h2>All Upcoming Movie Nights</h2>
       <div class="list-group">
         <% @groups.upcoming.each do |group| %>
           <% if group.event_date >= Date.today %>
@@ -30,10 +33,5 @@
         <% end %>
       </div>
     </div>
-  </div>
-
-  <div>
-    <%= link_to "Create a Movie Night", new_group_path, class: "btn btn-primary" %>
-    <br><br>
   </div>
 </div>
