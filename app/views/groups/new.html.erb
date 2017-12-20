@@ -1,6 +1,5 @@
-<h1>Create a new group event</h1>
-
 <div class="container">
+  <h1>Plan Your Next Movie Night!</h1>
   <%= form_with model: @group, local: true do |f| %>
     <% if @group.errors.any? %>
       <div id="explain_error">
@@ -15,19 +14,25 @@
           <% end %>
         </ul>
     <% end %>
+    <div class="form-group">
     <%= f.label "Give your movie night a name:" %>
-    <%= f.text_field :title %>
-    <br>
+    <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
     <%= f.label "And a description..." %>
-    <%= f.text_area :description %>
-    <br>
+    <%= f.text_area :description, class: 'form-control' %>
+    </div>
+    <div class="form-row">
+    <div class="col">
     <%= f.label "When is movie night happening?" %>
     <%= f.date_select :event_date, :default => Date.today %>
-    <br>
+    </div>
+    <div class="col">
     <%= f.label "What time?" %>
-    <%= f.time_select :event_time, :default => Time.now, ampm: true, minute_step: 15 %>
-    <br>
-    <%= f.submit %>
+    <%= f.time_select :event_time, :default => Time.now, minute_step: 15, ampm: true %>
+    </div>
+    </div>
+    <%= f.submit 'Create Movie Night', class: "btn btn-primary" %>
   </div>
   <% end %>
 </div>
