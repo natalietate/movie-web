@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
 
   def create
     get_movie
-    @watchlist = @movie.user_watchlists.build(params[:id])
+    @watchlist = @movie.user_watchlists.find_or_create_by(params[:id])
     @watchlist.user_id = current_user.id
       if @watchlist.save
         redirect_to root_path
