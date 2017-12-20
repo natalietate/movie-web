@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20171219194131) do
     t.integer "movie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "votes"
+    t.integer "votes", default: 0
     t.index ["group_id"], name: "index_group_watchlists_on_group_id"
     t.index ["movie_id"], name: "index_group_watchlists_on_movie_id"
   end
