@@ -49,12 +49,12 @@
     <% if @group.group_watchlists.empty?%>
       <h5>Looks like this group has no movies added yet.</h5>
     <% else %>
-    <% g = @group.movies.order(:cached_weighted_average => :desc).first %>
-    <% if g.get_upvotes.empty? %>
+    <% g = @group.group_watchlists.order(:votes => :desc).first %>
+    <% if g.votes.zero? %>
       <h5>Looks like no one has voted yet. Go cast your vote for what movie we should watch!</h5>
     <% else %>
-      <img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{g.poster_path}" %>" class="img-fluid mx-auto d-block" alt="Responsive image">
-      <p class="lead text-center"><strong><%= g.original_title %></strong> is in the lead with <%= pluralize(g.get_upvotes.size, 'vote') %>!</p>
+      <img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{g.movie.poster_path}" %>" class="img-fluid mx-auto d-block" alt="Responsive image">
+      <p class="lead text-center"><strong><%= g.movie.original_title %></strong> is in the lead with <%= pluralize(g.votes, 'vote') %>!</p>
     <% end %>
   </div>
     <% end %>
