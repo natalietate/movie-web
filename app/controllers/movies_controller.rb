@@ -31,22 +31,6 @@ class MoviesController < ApplicationController
       redirect_back(fallback_location: root_path)
   end
 
-  def upvote
-    @movie = Movie.find(params[:id])
-      # need to get the group ID somehow from the page where theyre voting
-    @movie.upvote_by current_user
-    # @votes = @movie.votes_for.last
-    # @votes.group_id = current_user.group.id
-    # find watchlist, increment vote column by one
-    redirect_back(fallback_location: root_path)
-  end
-
-  def downvote
-      @movie = Movie.find(params[:id])
-      @movie.downvote_by current_user
-      redirect_back(fallback_location: root_path)
-  end
-
   private
 
   def get_movie
