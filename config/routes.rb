@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :group_watchlists, only: [:create, :edit, :destroy] do
+  resources :group_watchlists do
     member do
       post 'upvote'
     end
