@@ -21,7 +21,7 @@
 
   <div class="m-5">
   <% if @members.ids.include? current_user.id %>
-    <h1 class="display-5"> Add Movies to the <%= @group.title %> Movie Night Watchlist:</h2>
+    <h1 class="display-4"> Add Movies to the <%= @group.title %> Movie Night Watchlist:</h2>
     <h5>Select movies from your Watchlist and click "Add" to the movies for the group</h5>
     <% if @user.user_watchlists.empty? %>
       <p>Looks like you don't have any movies to pick from! Why don't you add some to your own Watch List first?</p>
@@ -46,7 +46,7 @@
 
 
   <div class="m-5">
-    <h1 class="display-5">Top Movie:</h1>
+    <h1 class="display-4">Top Movie:</h1>
     <% if @group.group_watchlists.empty?%>
       <p>Nobody has added any movies yet!</p>
     <% else %>
@@ -60,7 +60,7 @@
     <% end %>
   </div>
   <div class="m-5">
-    <h1 class="display-5">Group's Watchlist:</h1>
+    <h1 class="display-4">Group's Watchlist:</h1>
     <% if @group.group_watchlists.empty? %>
       <p>Looks like this group has no movies to vote for. Why don't you add some options from your Watch List?</p>
     <% end %>

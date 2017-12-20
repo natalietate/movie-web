@@ -11,7 +11,7 @@
   <div class="row equal-height">
     <% @movies.each do |mov| %>
     <div class="col-sm-3">
-      <div class="card text-center">
+      <div class="card bg-light text-center">
         <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>" alt="<%= mov.original_title %>">
         <div class="card-body">
           <h4 class="card-title"><%= mov.original_title %></h4>

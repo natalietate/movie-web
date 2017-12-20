@@ -1,16 +1,20 @@
 <div class="container">
-  <h2>My Watchlist</h2>
+  <h2 class="display-4">My Watchlist</h2>
+  <div class="m-2">
+    <%= link_to "Add Movies to Watch List", movies_path, class: "btn btn-primary" %>
+    <br><br>
+  </div>
   <% if current_user.movies.empty? %>
     <h5>Looks like you haven't added any movies yet!</h5>
   <% end %>
   <div class="row equal-height">
     <% current_user.movies.each do |mov| %>
       <div class="col-sm-3">
-        <div class="card text-center">
+        <div class="card bg-light text-center">
           <img class="card-img-top" src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{mov.poster_path}" %>" alt="<%= mov.original_title %>">
           <div class="card-body">
             <p class="card-text"><%= mov.original_title %> </p>
-            <%= link_to 'Delete movie', movie_path(mov.id), class: 'btn btn-success', method: :delete, data: {confirm: 'Are you sure?'} %>
+            <%= link_to 'Remove Movie', movie_path(mov.id), class: 'btn btn-outline-secondary', method: :delete, data: {confirm: 'Are you sure you want to take this movie off your list?'} %>
 
           </div>
         </div>
@@ -20,8 +24,5 @@
   </div>
 
   <br><br>
-  <div>
-    <%= link_to "Add Movies to Watch List", movies_path, class: "btn btn-primary" %>
-    <br><br>
-  </div>
+
 </div>

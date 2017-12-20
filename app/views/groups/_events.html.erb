@@ -1,7 +1,7 @@
 <div class="container">
+  <h2 class="display-4">Your Upcoming Movie Nights</h2>
   <div class="row">
     <div class="col">
-      <h2>Your Upcoming Movie Nights</h2>
       <% @user.groups.upcoming.each do |group| %>
         <% if group.event_date >= Date.today %>
           <div class="col-sm">
@@ -11,5 +11,6 @@
       <% end %>
     </div>
   </div>
+  <%= link_to "See More Events", groups_index_path, class: "btn btn-primary m-2" %>
   <br><br>
 </div>
