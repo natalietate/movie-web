@@ -13,15 +13,6 @@ class GroupWatchlistsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def update
-    @grouplist.update(:votes)
-      if @grouplist.save
-        redirect_to root_path
-      else
-        redirect_to root_path
-      end
-  end
-
   def upvote
     get_group
     @movie = params[:movie_id]
