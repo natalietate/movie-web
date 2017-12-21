@@ -23,15 +23,13 @@
     <%= f.label "Let everyone know the details about the event:" %>
     <%= f.text_area :description, class: 'form-control' %>
     </div>
-    <div class="form-row">
-    <div class="col">
+    <div class="form-group">
     <%= f.label "When is the movie night happening?" %>
     <%= f.date_select :event_date, :default => Date.today %>
     </div>
-    <div class="col">
+    <div class="form-group">
     <%= f.label "What time?" %>
     <%= f.time_select :event_time, :default => Time.now, minute_step: 15, ampm: true %>
-    </div>
     </div>
     <%= f.submit 'Create Movie Night', class: "btn btn-primary" %>
   </div>

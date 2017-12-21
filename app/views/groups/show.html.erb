@@ -56,10 +56,17 @@
     <% if g.votes.zero? %>
       <p>Looks like no one has voted yet. Go cast your vote for what movie we should watch!</p>
     <% else %>
+    <div class="row">
+      <div class="col">
       <img src="<%= "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{g.movie.poster_path}" %>" class="img-fluid mx-auto d-block" alt="Responsive image">
+      </div>
+      <div class="col">
       <p class="lead text-center"><strong><%= g.movie.original_title %></strong> is in the lead with <%= pluralize(g.votes, 'vote') %>!</p>
+      <p><%= g.movie.overview %></p>
     <% end %>
     <% end %>
+    </div>
+    </div>
   </div>
   <div class="m-5">
     <h1 class="display-4">Group's Watchlist:</h1>
