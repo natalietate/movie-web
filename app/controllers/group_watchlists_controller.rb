@@ -1,9 +1,10 @@
 class GroupWatchlistsController < ApplicationController
+
   def create
     params[:group][:movie_ids].each do |movie_id|
       GroupWatchlist.find_or_create_by(group_id: params[:id], movie_id: movie_id)
     end
-    @group = Group.find(params[:id])
+    get_group
     redirect_to @group
   end
 
@@ -19,8 +20,7 @@ class GroupWatchlistsController < ApplicationController
       else
         redirect_to root_path
       end
-    end
-
+  end
 
   def upvote
     get_group
@@ -32,8 +32,8 @@ class GroupWatchlistsController < ApplicationController
     redirect_to @group
   end
 
-  def get_group
-    @group = Group.find(params[:id])
-  end
-
+  private
+    def get_group
+      @group = Group.find(params[:id])
+    end
 end

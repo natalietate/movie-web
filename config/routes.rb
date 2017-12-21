@@ -13,10 +13,6 @@ Rails.application.routes.draw do
       get 'search'
       post 'search', to: 'movies#create'
     end
-    member do
-      put 'like', to: 'movies#upvote'
-      put 'dislike', to: 'movies#downvote'
-    end
   end
 
   resources :groups, only: [:new, :create, :show] do

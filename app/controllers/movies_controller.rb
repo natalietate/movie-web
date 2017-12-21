@@ -26,27 +26,26 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-      @movie = UserWatchlist.find(params[:id])
-      @movie.destroy
-      redirect_back(fallback_location: root_path)
+    @movie = UserWatchlist.find(params[:id])
+    @movie.destroy
+    redirect_back(fallback_location: root_path)
   end
 
   private
+    def get_movie
+      @movie = Movie.find_or_create_by(movie_params)
+    end
 
-  def get_movie
-    @movie = Movie.find_or_create_by(movie_params)
-  end
+    def movie_params
+      params.permit(:original_title, :poster_path, :overview)
+    end
 
-  def movie_params
-    params.permit(:original_title, :poster_path, :overview)
-  end
+    def get_movie_db
+      @movieDb = MovieDbService.new
+    end
 
-  def get_movie_db
-    @movieDb = MovieDbService.new
-  end
-
-  def movie_provider
-    @movie_provider ||= MovieDbService.new
-  end
+    def movie_provider
+      @movie_provider ||= MovieDbService.new
+    end
 
 end
