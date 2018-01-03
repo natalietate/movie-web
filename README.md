@@ -1,5 +1,7 @@
 # MOVIE-NIGHT
 
+MovieNight is a web-based application that allows you to save movies you want to watch to your Watch List, create Movie Night events with your friends, and vote for which movie you want to watch at your next event! Users can save movies from their own Watch List to the Event's Watch List and then vote for which movie they want to watch together.
+
 **Run on your computer:**
 
 From your project folder, clone the git repository:
