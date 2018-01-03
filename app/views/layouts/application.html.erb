@@ -6,11 +6,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <!--use just the thumbs up font awesome style-->
-    <script src="https://use.fontawesome.com/releases/v5.0.1/js/thumbs-up.js"></script>
-    <script src="https://use.fontawesome.com/releases/v5.0.1/js/plus.js"></script>
-    <script src="https://use.fontawesome.com/releases/v5.0.1/js/regular.js"></script>
-    <script src="https://use.fontawesome.com/releases/v5.0.1/js/fontawesome.js"></script>
+
   </head>
 
   <body>
@@ -50,6 +46,11 @@
     </nav>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
+
     <%= yield %>
+
+    <nav class="navbar bottom navbar-light bg-light">
+      <a class="navbar-brand"> <nano>This product uses the TMDb API but is not endorsed or certified by TMDb.</nano> <a href="https://www.themoviedb.org/"<img src="/assets/tmdb.png" alt="The Movie Database"> </a></a> 
+    </nav>
   </body>
 </html>
