@@ -25,18 +25,18 @@ ActiveRecord::Schema.define(version: 20171219194131) do
   create_table "groups", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.date "event_date"
     t.time "event_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "movies", force: :cascade do |t|
     t.string "original_title"
     t.string "poster_path"
+    t.text "overview"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "overview"
   end
 
   create_table "user_groups", force: :cascade do |t|
