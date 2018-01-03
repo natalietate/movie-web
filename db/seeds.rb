@@ -9,7 +9,6 @@ user = User.create! :email => 'test@test.com', :password => 'testing', :password
   Movie.create! :original_title => "Singin' in the Rain", :poster_path => "/d5J53CwrVs6txB8zhE6qS2QhIV.jpg", :overview => "In 1927 Hollywood, Don Lockwood and Lina Lamont are a famous on-screen romantic pair in silent movies, but Lina mistakes the on-screen romance for real love. When their latest film is transformed into a musical, Don has the perfect voice for the songs, but strident voice faces the studio to dub her voice. Aspiring actress, Kathy Selden is brought in and, while she is working on the movie, Don falls in love with her."
 
 # Create User watchlist
-
   UserWatchlist.create! :movie_id => 1,  :user_id => 1
   UserWatchlist.create! :movie_id => 2,  :user_id => 1
   UserWatchlist.create! :movie_id => 3,  :user_id => 1
