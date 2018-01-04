@@ -16,11 +16,13 @@ Install all dependencies:
 
 	bundle install
 
-Create and seed the database:
+Create the database:
 
 	rake db:migrate
-	rake db:seed
 
+If you want a user and some movies to get you started, seed the database:
+	rake db:seed
+	
 Run the application:
 
 	rails server
