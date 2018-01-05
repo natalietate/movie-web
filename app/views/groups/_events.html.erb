@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col">
       <% @user.groups.upcoming.each do |group| %>
-        <% if group.event_date >= Date.today %>
+        <% if group.event_date >= Date.current %>
           <div class="col-sm">
             <a href="<%= group_path(group) %>" class="list-group-item list-group-item-action"><%= group.title %> on <%= local_date(group.event_date, '%B %e, %Y') %></a>
           </div>
