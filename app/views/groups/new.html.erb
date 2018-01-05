@@ -25,11 +25,11 @@
     </div>
     <div class="form-group">
     <%= f.label "When is the movie night happening?" %>
-    <%= f.date_select :event_date, :default => Date.today %>
+    <%= f.date_select :event_date, :default => Date.current %>
     </div>
     <div class="form-group">
     <%= f.label "What time?" %>
-    <%= f.time_select :event_time, :default => Time.now, minute_step: 15, ampm: true %>
+    <%= f.time_select :event_time, :default => Time.current, minute_step: 15, ampm: true %>
     </div>
     <%= f.submit 'Create Movie Night', class: "btn btn-primary" %>
   </div>

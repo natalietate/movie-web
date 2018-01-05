@@ -13,7 +13,7 @@ class Group < ApplicationRecord
 
   private
   def future_event
-    errors.add(:event_date, "can't be in the past!") if event_date < Date.today
+    errors.add(:event_date, "can't be in the past!") if event_date < Date.current
   end
 
 end
